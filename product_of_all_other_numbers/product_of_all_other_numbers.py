@@ -3,10 +3,28 @@ Input: a List of integers
 Returns: a List of integers
 '''
 def product_of_all_other_numbers(arr):
-    # Your code here
+    # create left, right, and product arrays
+    left = [0] * len(arr)
+    right = [0] * len(arr)
+    prod = [0] * len(arr)
 
-    pass
+    # 0th of left and -1th of right should be 1
+    left[0] = 1
+    right[-1] = 1
 
+    # traverse array from 2nd position, left array is populated by product of all preceding items from each index
+    for i in range(1, len(arr)):
+        left[i] = arr[i-1] * left[i - 1]
+
+    # traverse array backwards from second to last position, right array is populated by product of all succeeding items from each index
+    for j in range(len(arr) -2, -1, -1):
+        right[j] = arr[j + 1] * right[j + 1]
+
+    # product array is populated by values of left and righ arrays
+    for i in range(len(arr)):
+        prod[i] = left[i] * right[i]
+
+    return prod
 
 if __name__ == '__main__':
     # Use the main function to test your implementation
