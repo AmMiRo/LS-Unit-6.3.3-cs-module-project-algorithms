@@ -3,9 +3,14 @@ Input: a List of integers where every int except one shows up twice
 Returns: an integer
 '''
 def single_number(arr):
-    # Your code here
+    new_arr = []
+    for i in arr:
+        if i in new_arr:
+            new_arr.remove(i)
+        elif i not in new_arr:
+            new_arr.append(i)
+    return new_arr[0]
 
-    pass
 
 
 if __name__ == '__main__':
