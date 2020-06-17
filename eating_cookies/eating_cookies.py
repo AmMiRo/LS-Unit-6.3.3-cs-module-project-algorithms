@@ -2,17 +2,31 @@
 Input: an integer
 Returns: an integer
 '''
-def eating_cookies(n, cache=None):
-    if cache == None:
-        cache = [0] * (n + 1)
-    if n <= 1:
-        cache[n] = 1
-    elif n == 2:
-        cache[n] = 2
-    elif cache[n] == 0:
-        cache[n] = eating_cookies(n - 1, cache) + eating_cookies(n - 2, cache) + eating_cookies(n - 3, cache)
+# # ***** runs in 0.001sec *****
+# def eating_cookies(n, cache=None):
+#     if cache == None:
+#         cache = [0] * (n + 1)
+#     if n <= 1:
+#         cache[n] = 1
+#     elif n == 2:
+#         cache[n] = 2
+#     elif cache[n] == 0:
+#         cache[n] = eating_cookies(n - 1, cache) + eating_cookies(n - 2, cache) + eating_cookies(n - 3, cache)
 
-    return cache[n]
+#     return cache[n]
+
+# ***** runs in 0.000sec *****
+def eating_cookies(n, other=None):
+    if n == 0 or n == 1:
+        return 1
+    elif n == 2:
+        return 2
+    else:
+        arr = [1, 1, 2] + [0] * (n -2)
+    for i in range(3, n + 1):
+        arr[i] = arr[i - 1] + arr[i - 2] + arr[i - 3]
+
+    return arr[n]
 
     
 
