@@ -21,14 +21,20 @@ Returns: a List of integers
 #     return new_arr
 
 def sliding_window_max(nums, k):
+    # set up array that will be used as queue
     q = []
+    # set up array that will be returned at the end of the function
     answer = []
+
+    # create the value in q for the first window
     for i in range(k):
         while q and nums[i] >= nums[q[-1]]:
             q.pop()
         q.append(i)
     
+    # iterate through nums for later windows
     for i in range(k, len(nums)):
+        # append value for previous window to answer
         answer.append(nums[q[0]])
         while q and q[0] <= i - k:
             q.pop(0)
